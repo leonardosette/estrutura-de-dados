@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int vetor [10000];
+int j = 0;
+int i = 0;
+
+int main (){
+    //inicializacao da memoria
+    for(i = 0; i < 10000; i++){
+        vetor[i] = (rand()% 10000);
+    printf("%d\n", vetor[i]); //impressao de vetores
+    }
+    //ordenacao propriamente dita
+    for(i = 0; i < 9999; i++){
+        for(j = (i + 1); j < 10000; j++){
+                if (vetor[i] > vetor[j]){
+                    int temp = vetor[i];
+                    vetor[i] = vetor[j];
+                    vetor[j] = temp;
+                }
+        }
+    }
+for(i = 0; i < 10000; i++){
+printf("%d\n", vetor[i]);
+}
+
+}
