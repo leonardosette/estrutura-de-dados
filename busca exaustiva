@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int vetor [10000];
+int i = 0;
+int busca =0;
+int achei = 0;
+
+int main (){
+    //inicializacao da memoria
+    for(i = 0; i < 10000; i++){
+        vetor[i] = (rand()% 10000);
+    }
+
+    //perguntar o parametro de busca
+    printf("Digite o valor a ser buscado ");
+    scanf("%d", &busca);
+
+    //busca propriamente dita
+    achei = -1;
+    for(i = 0; i < 10000; i++){
+        if(vetor[i] == busca){
+            achei = i;
+        }
+    }
+    if (achei == -1){
+        printf("Se fudeu! n existe! ");
+        } else {
+        printf("Achei porra!!! na posicao %d\n", achei);
+        }
+}
