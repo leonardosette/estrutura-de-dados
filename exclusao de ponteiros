@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <stdlib.h>
+ //lista de encadeamento simples//
+ ////////////////////////////////
+
+ //declaracao da estrutura estrutura do nó//
+ //////////////////////////////////////////
+
+ struct no {
+    int numero;
+    struct no *proximo;
+ };
+
+ //declaracao de variavel//
+ /////////////////////////
+
+ struct no *cabeca = NULL;
+
+ //funcao q insere um no a lista//
+ ////////////////////////////////
+
+ void inserir(int numero) {
+    //alocacao do espaco de memoria//
+struct no *novoNo = (struct no *) malloc(sizeof(struct no));
+    novoNo -> numero = numero;
+    novoNo -> proximo = NULL;
+
+ if(cabeca == NULL){
+    //caso facil, a lisa esta vazia//
+    cabeca = novoNo;
+ } else {
+    //caso dificil, a lista n esta vazia//
+    struct no *ponteiro = cabeca;
+
+    while (ponteiro -> proximo != NULL){
+        ponteiro = ponteiro -> proximo;
+    }
+
+        ponteiro -> proximo = novoNo;
+    }
+}
+
+//fucao que imprime os nos nas listas//
+//////////////////////////////////////
+
+void imprimir() {
+    printf("====================================\n");
+
+    struct no *ponteiro = cabeca;
+
+    while(ponteiro != NULL) {
+    printf("%d\n", ponteiro -> numero);
+    ponteiro = ponteiro -> proximo;
+        }
+}
+
+//funcao que exclui o no da lista//
+//////////////////////////////////
+
+void remover(int numero){
+    if(cabeca != NULL){
+        if(cabeca -> numero == numero){
+            //caso facil, excluir o primeiro da lista
+            struct no *ponteiroExcluir = cabeca;
+            cabeca = cabeca -> proximo;
+            free (ponteiroExcluir);
+        }else {
+            //caso dificil, excluir algum nó no meio da lista
+            struct no *ponteiroAnterior = cabeca;
+
+            while((ponteiroAnterior -> proximo != NULL) &&
+                (ponteiroAnterior -> proximo -> numero != numero)){
+                ponteiroAnterior = ponteiroAnterior -> proximo;
+            }
+
+            if (ponteiroAnterior -> proximo != NULL){
+                struct no *ponteiroExcluir = ponteiroAnterior -> proximo;
+                ponteiroAnterior -> proximo = ponteiroExcluir -> proximo;
+                free(ponteiroExcluir);
+            }
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//funcao principal de exeucao do programa//
+
+int main(int argc, char *argv[]){
+    inserir(1);
+    inserir(2);
+    inserir(3);
+    inserir(4);
+    inserir(5);
+    inserir(6);
+
+    imprimir();
+
+    remover(100);
+    remover(1);
+    remover(3);
+    remover(6);
+
+    imprimir();
+}
